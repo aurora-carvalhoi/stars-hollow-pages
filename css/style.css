@@ -7,6 +7,7 @@
     --cor-texto1: #000;
     --cor-texto2: #fff;
     --cor-bordas: #C8C2B6;
+    --ativo: #784508;
 }
 
 * {
@@ -45,6 +46,14 @@ a {
     text-decoration: none;
     color: var(--cor-texto2);
     font-weight:600
+}
+
+a:active {
+    color: var(--ativo);
+}
+
+.ativo{
+    color: var(--ativo);
 }
 
 .links-nav{
@@ -104,13 +113,17 @@ main{
     align-items: center;
     gap: 28px;
     padding: 32px 0px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 main h2 {
     text-align: center;
     color: var(--cor-principal);
     font-size: 32px;
+}
+
+main img{
+    width: 100%;
 }
 .box-lateral1 {
     display: flex;
