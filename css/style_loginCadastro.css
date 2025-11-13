@@ -1,0 +1,37 @@
+@import url(style.css);
+
+.bloco-principal{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.bloco-input{
+    font-size: 24px;
+    font-style: italic;
+    color: var(--ativo) ;
+    font-weight:500;
+}
+
+.input{
+    width: 430px;
+    height: 40px;
+    border-width: 2px;
+    border-color:#BB9467 ;
+    background-color: #FFE4C5;
+    outline: none;
+    border-style: solid;
+    padding: 10px;
+    font-family: Playfair Display;
+    font-size: 24px;
+    color: var(--ativo);
+}
+
+
+.botao{
+    border: none;
+    text-decoration: none;
+    align-self: center;
+    background-color: var(--cor-base);
+    cursor: pointer;
+}

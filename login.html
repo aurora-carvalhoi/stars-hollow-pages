@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_loginCadastro.css">
   </head>
   <header>
       <img class="bg-header" src="../public/assets/imagens/header.svg" alt="" />
     <nav>
       <div class="links-nav">
-        <a href="" class="ativo">Página Inicial</a>
+        <a href="index.html">Página Inicial</a>
         <img src="../public/assets/icones/linha_1.svg" alt="">
         <a href="sobre_a_serie.html">Sobre a Série</a>
         <img src="../public/assets/icones/linha_1.svg" alt="">
@@ -19,7 +20,7 @@
         <a href="">Quizzes</a>
       </div>
       <div class="botoes-nav">
-        <a href="">
+        <a href="cadastro.html">
           <img src="../public/assets/icones/botao_cadastro.svg" alt="" />
         </a>
         <a href="login.html">
@@ -47,46 +48,18 @@
       </div>
       <main>
         <div class="conteudo-principal">
-          <h2>Bem-vindo ao Stars Hollow Pages!</h2>
-        <p>
-          Inspirado na série dos anos 2000 “Gilmore Girls”, o "Stars Hollow
-          Pages" tem como proposta ser um site informativo sobre a série, sobre
-          o desenvolvimento do próprio site, receber recomendações de livros
-          baseadas na série, e responder quizzes que nos lembram as revistas
-          adolescentes antigas, além de mostrar na sua dashboard personalizada
-          indicadores e gráficos relacionados às suas respostas!
-        </p>
-        <img
-          class="img-main"
-          src="../public/assets/imagens/smell_it.jpg"
-          alt=""
-        />
-        <p>
-          O site busca resgatar a essência vintage dos blogs, com um design que
-          remete a toda estética da série (fontes, cores e estilo). Além disso,
-          você pode encontrar listas temáticas de episódios para você maratonar
-          de acordo com seu humor ou estação do ano e dicas de estudo para
-          ajudar na sua rotina, afinal “who cares if I’m pretty if I fail my
-          finals?”
-        </p>
-        <img
-          class="img-main"
-          src="../public/assets/imagens/who_cares_if.jpg"
-          alt=""
-        />
-        <!-- <p>
-          Para saber mais sobre o projeto, você pode clicar na sessão do menu
-          “Sobre o Projeto”, assim você conseguirá ter uma visão mais clara de
-          como tudo funciona.
-        </p>
-        <img class="img-main" src="../public/assets/imagens/knowmore.png""
-        alt=""> -->
-        <p>
-          Feito por uma fã incondicional da série, esse site é meu projeto
-          individual de primeiro semestre para a disciplina de pesquisa e
-          inovação da faculdade São Paulo Tech School, do curso de Ciências da
-          Computação.
-        </p>
+          <h2>Acesse sua dashboard!</h2>
+          <div class="bloco-principal">
+          <div class="bloco-input">
+            <span>Nome de usuário</span><br>
+            <input class="input" type="text" id="ipt_nomeUsuario"><br>
+          </div>
+            <div class="bloco-input">
+            <span>Senha</span><br>
+            <input class="input" type="password" id="ipt_senha"><br>
+            </div>
+            <button class="botao" onclick=""> <img src="public/assets/icones/entrar.svg" alt=""></button>
+          </div>
         </div>
       </main>
       <div class="coluna-lateral">
