@@ -27,6 +27,20 @@
     color: var(--ativo);
 }
 
+.select{
+    width: 455px;
+    height: 63px;
+    border-width: 2px;
+    border-color:#BB9467 ;
+    background-color: #FFE4C5;
+    outline: none;
+    border-style: solid;
+    padding: 10px;
+    font-family: Playfair Display;
+    font-size: 24px;
+    color: var(--ativo);
+}
+
 
 .botao{
     border: none;
