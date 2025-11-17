@@ -1,0 +1,19 @@
+.postagem{
+display: flex;
+padding: 10px 0 24px 0;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 24px;
+align-self: stretch;
+border-bottom: 1px solid var(--cor-bordas);
+}
+
+.postagem h2{
+    width: 550px;
+}
+
+.postagem-link {
+    color: black;
+    font-weight: 300;
+}
