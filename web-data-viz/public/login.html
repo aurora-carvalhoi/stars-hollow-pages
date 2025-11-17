@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/style_loginCadastro.css">
+
+</head>
+  <header>
+      <img class="bg-header" src="../public/assets/imagens/header.svg" alt="" />
+    <nav>
+      <div class="links-nav">
+        <a href="index.html">Página Inicial</a>
+        <img src="../public/assets/icones/linha_1.svg" alt="">
+        <a href="sobre_a_serie.html">Sobre a Série</a>
+        <img src="../public/assets/icones/linha_1.svg" alt="">
+        <a href="dicas_estudo.html">Dicas de Estudo</a>
+        <img src="../public/assets/icones/linha_1.svg" alt="">
+        <a href="quizz_conhecimentos.html">Quizz</a>
+      </div>
+      <div class="botoes-nav">
+        <a href="cadastro.html">
+          <img src="../public/assets/icones/botao_cadastro.svg" alt="" />
+        </a>
+        <a href="login.html">
+          <img src="../public/assets/icones/botao_login.svg" alt="" />
+        </a>
+      </div>
+    </nav>
+  </header>
+  <body>
+    <div class="div-principal">
+      <div class="coluna-lateral">
+        <div class="box-lateral1">
+          <h1>"Nothing says coffee like six in the morning"</h1>
+          <img src="../public/assets/icones/Lukes.svg" alt="" />
+        </div>
+        <div class="box-lateral">
+          <a href="">
+            <img
+              class="img-side"
+              src="../public/assets/imagens/Watch.png"
+              alt=""
+            />
+          </a>
+        </div>
+      </div>
+      <main>
+        <div class="conteudo-principal">
+          <h2>Acesse sua dashboard!</h2>
+          <div class="bloco-principal">
+          <div class="bloco-input">
+            <span>Nome de usuário</span><br>
+            <input class="input" type="text" id="ipt_nomeUsuario"><br>
+          </div>
+            <div class="bloco-input">
+            <span>Senha</span><br>
+            <input class="input" type="password" id="ipt_senha"><br>
+            </div>
+            <button class="botao" onclick=""> <img src="public/assets/icones/entrar.svg" alt=""></button>
+          </div>
+        </div>
+      </main>
+      <div class="coluna-lateral">
+        <div class="box-lateral1">
+          <h1>Leitura do mês</h1>
+          <img
+            class="img-side"
+            src="../public/assets/imagens/to_kill_a_mockingbird.jpg"
+            alt=""
+          />
+          <h4>
+            “O sol é para todos”<br>
+            Harper Lee
+          </h4>
+        </div>
+        <div class="box-lateral">
+          <h1>Github do projeto</h1>
+          <a href="https://github.com/aurora-carvalhoi">
+            <img src="../public/assets/icones/github.svg" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div>
+        Design & dev: Aurora Carvalho • Gilmore Girls © Warner Bros. • Site de
+        fã desenvolvido para projeto acadêmido, sem fins lucrativos e sem
+        vínculo oficial.
+      </div>
+      <img class="icon-footer" src="../public/assets/icones/github_footer.svg" alt="" />
+    </footer>
+  </body>
+
+</html>
+
+<script>
+
+
+    function entrar() {
+        aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
