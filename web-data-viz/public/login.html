@@ -10,28 +10,28 @@
 
     <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/style_loginCadastro.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style_loginCadastro.css">
 
 </head>
   <header>
-      <img class="bg-header" src="../public/assets/imagens/header.svg" alt="" />
+      <img class="bg-header" src="./assets/imagens/header.svg" alt="" />
     <nav>
       <div class="links-nav">
         <a href="index.html">Página Inicial</a>
-        <img src="../public/assets/icones/linha_1.svg" alt="">
+        <img src="./assets/icones/linha_1.svg" alt="">
         <a href="sobre_a_serie.html">Sobre a Série</a>
-        <img src="../public/assets/icones/linha_1.svg" alt="">
+        <img src="./assets/icones/linha_1.svg" alt="">
         <a href="dicas_estudo.html">Dicas de Estudo</a>
-        <img src="../public/assets/icones/linha_1.svg" alt="">
+        <img src="./assets/icones/linha_1.svg" alt="">
         <a href="quizz_conhecimentos.html">Quizz</a>
       </div>
       <div class="botoes-nav">
         <a href="cadastro.html">
-          <img src="../public/assets/icones/botao_cadastro.svg" alt="" />
+          <img src="./assets/icones/botao_cadastro.svg" alt="" />
         </a>
         <a href="login.html">
-          <img src="../public/assets/icones/botao_login.svg" alt="" />
+          <img src="./assets/icones/botao_login.svg" alt="" />
         </a>
       </div>
     </nav>
@@ -41,13 +41,13 @@
       <div class="coluna-lateral">
         <div class="box-lateral1">
           <h1>"Nothing says coffee like six in the morning"</h1>
-          <img src="../public/assets/icones/Lukes.svg" alt="" />
+          <img src="./assets/icones/Lukes.svg" alt="" />
         </div>
         <div class="box-lateral">
           <a href="">
             <img
               class="img-side"
-              src="../public/assets/imagens/Watch.png"
+              src="./assets/imagens/Watch.png"
               alt=""
             />
           </a>
@@ -65,7 +65,8 @@
             <span>Senha</span><br>
             <input class="input" type="password" id="ipt_senha"><br>
             </div>
-            <button class="botao" onclick=""> <img src="public/assets/icones/entrar.svg" alt=""></button>
+            <button class="botao" onclick="entrar()"> <img src="./assets/icones/entrar.svg" alt=""></button>
+            <div id="mensagem_erro"></div>
           </div>
         </div>
       </main>
@@ -74,7 +75,7 @@
           <h1>Leitura do mês</h1>
           <img
             class="img-side"
-            src="../public/assets/imagens/to_kill_a_mockingbird.jpg"
+            src="./assets/imagens/to_kill_a_mockingbird.jpg"
             alt=""
           />
           <h4>
@@ -85,7 +86,7 @@
         <div class="box-lateral">
           <h1>Github do projeto</h1>
           <a href="https://github.com/aurora-carvalhoi">
-            <img src="../public/assets/icones/github.svg" alt="" />
+            <img src="./assets/icones/github.svg" alt="" />
           </a>
         </div>
       </div>
@@ -96,7 +97,7 @@
         fã desenvolvido para projeto acadêmido, sem fins lucrativos e sem
         vínculo oficial.
       </div>
-      <img class="icon-footer" src="../public/assets/icones/github_footer.svg" alt="" />
+      <img class="icon-footer" src="./assets/icones/github_footer.svg" alt="" />
     </footer>
   </body>
 
@@ -106,22 +107,22 @@
 
 
     function entrar() {
-        aguardar();
+        // aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var nomeUsuarioVar = ipt_nomeUsuario.value;
+        var senhaVar = ipt_senha.value;
 
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
+        if (nomeUsuarioVar == "" || senhaVar == "") {
+            // cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            // finalizarAguardar();
             return false;
         }
         else {
             setInterval(sumirMensagem, 5000)
         }
 
-        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM LOGIN: ", nomeUsuarioVar);
         console.log("FORM SENHA: ", senhaVar);
 
         fetch("/usuarios/autenticar", {
@@ -130,7 +131,7 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailServer: emailVar,
+                nomeUsuarioServer: nomeUsuarioVar,
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
@@ -142,13 +143,13 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    // sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json[0].nomeUsuario;
+                    sessionStorage.ID_USUARIO = json[0].idUsuario;
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "quizz_conhecimentos.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -171,7 +172,7 @@
     }
 
     function sumirMensagem() {
-        cardErro.style.display = "none"
+        mensagem_erro.innerHTML = ""
     }
 
 </script>
