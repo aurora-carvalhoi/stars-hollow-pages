@@ -139,6 +139,7 @@
 
             if (resposta.ok) {
                 console.log(resposta);
+                mensagem_erro.innerHTML = `<div style="text-align: center;">Credenciais validadas! Redirecionando para a dashboard...</div>`
 
                 resposta.json().then(json => {
                     console.log(json);
@@ -150,7 +151,7 @@
 
                     setTimeout(function () {
                         window.location = "quizz_conhecimentos.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 5000); // apenas para exibir o loading
 
                 });
 

@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
 
-  <title>Cadastro</title>
+    <script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/style_loginCadastro.css" />
+  </head>
 
-  <script src="./js/sessao.js"></script>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/style_loginCadastro.css">
-
-
-</head>
-
-<header>
-      <img class="bg-header" src="./assets/imagens/header.svg" alt="" />
+  <header>
+    <img class="bg-header" src="./assets/imagens/header.svg" alt="" />
     <nav>
       <div class="links-nav">
         <a href="index.html">Página Inicial</a>
-        <img src="./assets/icones/linha_1.svg" alt="">
+        <img src="./assets/icones/linha_1.svg" alt="" />
         <a href="sobre_a_serie.html">Sobre a Série</a>
-        <img src="./assets/icones/linha_1.svg" alt="">
+        <img src="./assets/icones/linha_1.svg" alt="" />
         <a href="dicas_estudo.html">Dicas de Estudo</a>
-        <img src="./assets/icones/linha_1.svg" alt="">
+        <img src="./assets/icones/linha_1.svg" alt="" />
         <a href="quizz_conhecimentos.html">Quizz</a>
       </div>
       <div class="botoes-nav">
@@ -37,7 +34,7 @@
       </div>
     </nav>
   </header>
-  <body>
+  <body onload="listar()">
     <div class="div-principal">
       <div class="coluna-lateral">
         <div class="box-lateral1">
@@ -46,11 +43,7 @@
         </div>
         <div class="box-lateral">
           <a href="">
-            <img
-              class="img-side"
-              src="./assets/imagens/Watch.png"
-              alt=""
-            />
+            <img class="img-side" src="./assets/imagens/Watch.png" alt="" />
           </a>
         </div>
       </div>
@@ -58,76 +51,82 @@
         <div class="conteudo-principal">
           <h2>Cadastre-se!</h2>
           <div class="bloco-principal">
-          <div class="bloco-input">
-            <span>Primeiro nome</span><br>
-            <input class="input" type="text" id="ipt_nome"><br>
-          </div>
-          <div class="bloco-input">
-            <span>E-mail</span><br>
-            <input class="input" type="text" id="ipt_email"><br>
-          </div>
-          <div class="bloco-input">
-            <span>Nome de usuário</span><br>
-            <input class="input" type="text" id="ipt_nomeUsuario"><br>
-          </div>
-          <div class="bloco-input">
-            <span>Data de Nascimento</span><br>
-            <input class="input" type="date" id="ipt_dtNascimento"><br>
-          </div>
             <div class="bloco-input">
-            <span>Qual o seu personagem favorito da série?</span><br>
-            <select class="select" name="" id="select_favorito">
-              <option selected disabled value="#">Selecione...</option>
-              <option value="1">Lorelai</option>
-              <option value="2">Rory</option>
-              <option value="3">Luke</option>
-              <option value="4">Lane</option>
-              <option value="5">Paris</option>
-              <option value="6">Richard</option>
-              <option value="7">Emily</option>
-              <option value="8">Sookie</option>
-              <option value="9">Kirk</option>
-              <option value="10">Michel</option>
-            </select><br>
-          </div>
-          <div class="bloco-input">
-            <span>Você é Team Dean, Jess ou Logan?</span><br>
-            <select class="select" name="" id="select_boy">
-              <option selected disabled value="#">Selecione...</option>
-              <option value="11">Dean</option>
-              <option value="12">Jess</option>
-              <option value="13">Logan</option>
-            </select><br>
-          </div>
-            <div class="bloco-input">
-            <span>Para qual Ivy League você iria?</span><br>
-            <select class="select" name="" id="select_ivyLeague">
-              <option selected disabled value="#">Selecione...</option>
-              <option value="1">Harvard</option>
-              <option value="2">Yale</option>
-              <option value="3">Princeton</option>
-            </select><br>
-          </div>
-            <div class="bloco-input">
-            <span>Quantas vezes você já viu a série?</span><br>
-            <select class="select" name="" id="select_views">
-              <option selected disabled value="#">Selecione...</option>
-              <option value="1">Uma vez</option>
-              <option value="2">Duas vezes</option>
-              <option value="3">Três vezes</option>
-              <option value="4">Quatro vezes ou mais</option>
-            </select><br>
-          </div>
-            <div class="bloco-input">
-            <span>Senha</span><br>
-            <input class="input" type="password" id="ipt_senha"><br>
+              <span>Primeiro nome</span><br />
+              <input class="input" type="text" id="ipt_nome" /><br />
             </div>
             <div class="bloco-input">
-            <span>Confirme sua senha</span><br>
-            <input class="input" type="password" id="ipt_confirmaSenha"><br>
+              <span>E-mail</span><br />
+              <input class="input" type="text" id="ipt_email" /><br />
             </div>
-            <button class="botao" onclick="cadastrar()"> <img src="./assets/icones/finalizar_cadastro.svg" alt=""></button>
-            <div id="mensagem_erro"></div>
+            <div class="bloco-input">
+              <span>Nome de usuário</span><br />
+              <input class="input" type="text" id="ipt_nomeUsuario" /><br />
+            </div>
+            <div class="bloco-input">
+              <span>Data de Nascimento</span><br />
+              <input class="input" type="date" id="ipt_dtNascimento" /><br />
+            </div>
+            <div class="bloco-input">
+              <span>Qual o seu personagem favorito da série?</span><br />
+              <select class="select" name="" id="select_favorito">
+                <option selected disabled value="#">Selecione...</option>
+                <option value="1">Lorelai</option>
+                <option value="2">Rory</option>
+                <option value="3">Luke</option>
+                <option value="4">Lane</option>
+                <option value="5">Paris</option>
+                <option value="6">Richard</option>
+                <option value="7">Emily</option>
+                <option value="8">Sookie</option>
+                <option value="9">Kirk</option>
+                <option value="10">Michel</option></select
+              ><br />
+            </div>
+            <div class="bloco-input">
+              <span>Você é Team Dean, Jess ou Logan?</span><br />
+              <select class="select" name="" id="select_boy">
+                <option selected disabled value="#">Selecione...</option>
+                <option value="11">Dean</option>
+                <option value="12">Jess</option>
+                <option value="13">Logan</option></select
+              ><br />
+            </div>
+            <div class="bloco-input">
+              <span>Para qual Ivy League você iria?</span><br />
+              <select class="select" name="" id="select_ivyLeague">
+                <option selected disabled value="#">Selecione...</option>
+                <option value="1">Harvard</option>
+                <option value="2">Yale</option>
+                <option value="3">Princeton</option></select
+              ><br />
+            </div>
+            <div class="bloco-input">
+              <span>Quantas vezes você já viu a série?</span><br />
+              <select class="select" name="" id="select_views">
+                <option selected disabled value="#">Selecione...</option>
+                <option value="1">Uma vez</option>
+                <option value="2">Duas vezes</option>
+                <option value="3">Três vezes</option>
+                <option value="4">Quatro vezes ou mais</option></select
+              ><br />
+            </div>
+            <div class="bloco-input">
+              <span>Senha</span><br />
+              <input class="input" type="password" id="ipt_senha" /><br />
+            </div>
+            <div class="bloco-input">
+              <span>Confirme sua senha</span><br />
+              <input
+                class="input"
+                type="password"
+                id="ipt_confirmaSenha"
+              /><br />
+            </div>
+            <button class="botao" onclick="cadastrar()">
+              <img src="./assets/icones/finalizar_cadastro.svg" alt="" />
+            </button>
+            <div style="text-align: center" id="mensagem_erro"></div>
           </div>
         </div>
       </main>
@@ -140,7 +139,7 @@
             alt=""
           />
           <h4>
-            “O sol é para todos”<br>
+            “O sol é para todos”<br />
             Harper Lee
           </h4>
         </div>
@@ -160,138 +159,206 @@
       </div>
       <img class="icon-footer" src="./assets/icones/github_footer.svg" alt="" />
     </footer>
-    </body>
-
+  </body>
 </html>
 
 <script>
-
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  // let listaEmpresasCadastradas = [];
+  var lista_caracteresEspeciais = ["*", "@", "$", "%", "#", "!"];
+  var lista_numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  var lista_emails = [];
+  var lista_usuarios = [];
 
   function cadastrar() {
-    // aguardar();
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = ipt_nome.value
-    var emailVar = ipt_email.value
-    var nomeUsuarioVar = ipt_nomeUsuario.value
-    var dtNascimentoVar = ipt_dtNascimento.value
-    var personagemFavVar = Number(select_favorito.value)
-    var boyFavVar = Number(select_boy.value)
-    var ivyLeague = Number(select_ivyLeague.value)
-    var qtdViewsVar = Number(select_views.value)
-    var senhaVar = ipt_senha.value
-    var confirmacaoSenhaVar = ipt_confirmaSenha.value
-    // var idEmpresaVincular
+    var nomeVar = ipt_nome.value;
+    var emailVar = ipt_email.value;
+    var nomeUsuarioVar = ipt_nomeUsuario.value;
+    var dtNascimentoVar = ipt_dtNascimento.value;
+    var personagemFavVar = Number(select_favorito.value);
+    var boyFavVar = Number(select_boy.value);
+    var ivyLeague = Number(select_ivyLeague.value);
+    var qtdViewsVar = Number(select_views.value);
+    var senhaVar = ipt_senha.value;
+    var confirmacaoSenhaVar = ipt_confirmaSenha.value;
 
     // Verificando se há algum campo em branco
     if (
-
-    nomeVar == "" ||
-    emailVar == "" ||
-    nomeUsuarioVar == "" ||
-    dtNascimentoVar == "" ||
-    personagemFavVar == "#" ||
-    boyFavVar == "#" ||
-    ivyLeague == "#" ||
-    qtdViewsVar == "#" ||
-    senhaVar == "" ||
-    confirmacaoSenhaVar == "" 
-
+      nomeVar == "" ||
+      emailVar == "" ||
+      nomeUsuarioVar == "" ||
+      dtNascimentoVar == "" ||
+      personagemFavVar == "#" ||
+      boyFavVar == "#" ||
+      ivyLeague == "#" ||
+      qtdViewsVar == "#" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
     ) {
-      // cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      /* finalizarAguardar(); */
+        "Preencha todos os campos! Nenhum pode ficar em branco";
       return false;
-    } else {
-      /* setInterval(sumirMensagem, 5000); */
     }
 
-    // // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    //     finalizarAguardar();
-    //   }
-    // }
+    if (!emailVar.includes("@") || !email.endsWith(".com" || ".com.br")) {
+      mensagem_erro.innerHTML = "Email inválido! Use algo como nome@email.com";
+      return false;
+    }
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        nomeUsuarioServer: nomeUsuarioVar,
-        dtNascimentoServer: dtNascimentoVar,
-        personagemFavServer: personagemFavVar,
-        boyFavServer:boyFavVar,
-        ivyLeagueServer: ivyLeague,
-        qtdViewsServer: qtdViewsVar
-      }),
+    var emailJacadastrado = false;
+    //  Verificando se o e-mail já foi cadastrado no banco
+    for (let h = 0; h < lista_emails.length; h++) {
+      if (lista_emails[h].email == emailVar) {
+        email = lista_emails[h].email;
+        emailJacadastrado = true;
+        console.log("E-mail já cadastrado");
+      } else {
+        console.log("E-mail válido");
+      }
+    }
+
+    if (emailJacadastrado) {
+      mensagem_erro.innerHTML = "E-mail já está sendo utilizado";
+      ipt_email.value = "";
+      ipt_nomeUsuario.value = "";
+      ipt_senha.value = "";
+      ipt_confirmaSenha.value = "";
+      return false;
+    }
+
+    var usuarioJaCadastrado = false;
+    //  Verificando se o e-mail já foi cadastrado no banco
+    for (let g = 0; g < lista_usuarios.length; g++) {
+      if (lista_usuarios[g].nomeUsuario == nomeUsuarioVar) {
+        nomeUsuario = lista_usuarios[g].nomeUsuario;
+        usuarioJaCadastrado = true;
+        console.log("Usuário já cadastrado");
+      } else {
+        console.log("Nome de usuário válido");
+      }
+    }
+
+    if (usuarioJaCadastrado) {
+      mensagem_erro.innerHTML = "Nome de usuário já está sendo utilizado";
+      ipt_email.value = "";
+      ipt_nomeUsuario.value = "";
+      ipt_senha.value = "";
+      ipt_confirmaSenha.value = "";
+      return false;
+    }
+
+    var temEspecial = false;
+    var temNumero = false;
+
+    for (
+      var i = 0;
+      i < lista_caracteresEspeciais.length && temEspecial == false;
+      i++
+    ) {
+      var caractereEspecial = lista_caracteresEspeciais[i];
+
+      if (senhaVar.includes(caractereEspecial)) {
+        temEspecial = true;
+        break;
+      }
+    }
+
+    for (var j = 0; j < lista_numeros.length && temNumero == false; j++) {
+      var numero = lista_numeros[j];
+
+      if (senhaVar.includes(numero)) {
+        temNumero = true;
+        break;
+      }
+    }
+
+    if (temEspecial && temNumero) {
+      if (senhaVar == confirmacaoSenhaVar) {
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+            nomeUsuarioServer: nomeUsuarioVar,
+            dtNascimentoServer: dtNascimentoVar,
+            personagemFavServer: personagemFavVar,
+            boyFavServer: boyFavVar,
+            ivyLeagueServer: ivyLeague,
+            qtdViewsServer: qtdViewsVar,
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              mensagem_erro.innerHTML =
+                "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+              setTimeout(() => {
+                window.location = "login.html";
+              }, "2000");
+            } else {
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+        return false;
+      } else {
+        mensagem_erro.innerHTML =
+          "Suas senhas não são iguais, tente novamente!";
+        ipt_senha.value = "";
+        ipt_confirmaSenha.value = "";
+      }
+    } else {
+      mensagem_erro.innerHTML =
+        "Sua senha precisa de ao menos um número e um caractere especial";
+      ipt_senha.value = "";
+      ipt_confirmaSenha.value = "";
+    }
+  }
+
+  // Listando empresas cadastradas
+  function listar() {
+    fetch("/emails/listar", {
+      method: "GET",
     })
       .then(function (resposta) {
-        console.log("resposta: ", resposta);
+        resposta.json().then((emails) => {
+          emails.forEach((email) => {
+            lista_emails.push(email);
 
-        if (resposta.ok) {
-          // cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-/*           limparFormulario();
-          finalizarAguardar(); */
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+            console.log("lista_emails");
+            console.log(lista_emails[0].email);
+          });
+        });
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
       });
 
-    return false;
+    fetch("/emails/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((emails) => {
+          emails.forEach((nomeUsuario) => {
+            lista_usuarios.push(nomeUsuario);
+
+            console.log("lista_emails");
+            console.log(lista_usuarios[0].nomeUsuario);
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
   }
-
-  // // Listando empresas cadastradas 
-  // function listar() {
-  //   fetch("/empresas/listar", {
-  //     method: "GET",
-  //   })
-  //     .then(function (resposta) {
-  //       resposta.json().then((empresas) => {
-  //         empresas.forEach((empresa) => {
-  //           listaEmpresasCadastradas.push(empresa);
-
-  //           console.log("listaEmpresasCadastradas")
-  //           console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-  //         });
-  //       });
-  //     })
-  //     .catch(function (resposta) {
-  //       console.log(`#ERRO: ${resposta}`);
-  //     });
-  // }
-
- /*  function sumirMensagem() {
-    mensagem_erro.innerHTML = "";
-  } */
 </script>

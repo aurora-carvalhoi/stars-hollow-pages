@@ -17,8 +17,8 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var medidasRouter = require("./src/routes/medidas");
-// var aquariosRouter = require("./src/routes/aquarios");
+// var medidasRouter = require("./src/routes/medidas");
+var emailsRouter = require("./src/routes/emails");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,8 +28,8 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/medidas", medidasRouter);
-// app.use("/aquarios", aquariosRouter);
+// app.use("/medidas", medidasRouter);
+app.use("/emails", emailsRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
