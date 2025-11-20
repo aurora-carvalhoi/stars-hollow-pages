@@ -228,10 +228,10 @@ const listaDeQuestoes = [
    
     var imgBotaoAvancar = document.getElementById('botaoAvancar');
     
-    if (imgBotaoAvancar.src.includes('public/assets/icones/botao_avancar.svg')) {
-      imgBotaoAvancar.src = 'public/assets/icones/botao_finalizar.svg';
+    if (imgBotaoAvancar.src.includes('botao_avancar')) {
+      imgBotaoAvancar.src = './assets/icones/botao_finalizar.svg';
     } else {
-      imgBotaoAvancar.src = 'public/assets/icones/botao_avancar.svg';
+      imgBotaoAvancar.src = './assets/icones/botao_avancar.svg';
     }
   }
     
@@ -245,15 +245,15 @@ const listaDeQuestoes = [
 
         if (porcentagemFinalDeAcertos <= 0.3) {
             textoParaMensagemFinal = `<h2>Precisa assistir mais a série ein?</h2><br>
-        <img src="../public/assets/imagens/resultado1.jpeg" alt="">`
+        <img src="./assets/imagens/resultado1.jpeg" alt="">`
         }
         else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
             textoParaMensagemFinal = `<h2>Um B+ no seu boletim é suficiente pra você?</h2>
-              <img src="../public/assets/imagens/resultado2.jpg" alt="">`
+              <img src="./assets/imagens/resultado2.jpg" alt="">`
         }
         else if (porcentagemFinalDeAcertos >= 0.9) {
             textoParaMensagemFinal = `<h2>É o orgulho de Stars hollow!</h2>
-              <img src="../public/assets/imagens/resultado3.png" alt="">`
+              <img src="./assets/imagens/resultado3.png" alt="">`
         }
 
         textoParaMensagemFinal += "<br><span> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões.</span>"

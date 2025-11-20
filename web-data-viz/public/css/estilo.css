@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
   margin: 0;
@@ -60,7 +60,7 @@ body {
   margin: 0;
 }
 
-/* BANNER */
+ BANNER 
 
 .banner {
   height: var(--tamanho-banner);
@@ -86,7 +86,7 @@ body {
   font-weight: 800;
 }
 
-/* MISSÃO VISÃO VALORES */
+ MISSÃO VISÃO VALORES 
 
 .social {
   background-color: #e5e5e5;
@@ -118,7 +118,7 @@ body {
   align-items: center;
 }
 
-/* FOOTER */
+ FOOTER 
 
 .footer {
   background-color: #32b9cd;
@@ -137,7 +137,7 @@ body {
   font-size: 12px;
 }
 
-/* LOGIN */
+ LOGIN 
 
 .login {
   height: var(--tamanho-login);
@@ -235,7 +235,7 @@ body {
   display: none
 }
 
-/* FORMULARIO */
+ FORMULARIO 
 
 .alerta_erro{
   display: flex;
@@ -302,7 +302,7 @@ input {
   width: 50px;
 }
 
-/* SIMULADOR */
+ SIMULADOR 
 
 .simulador {
   color: white;
@@ -314,7 +314,7 @@ input {
   height: var(--tamanho-simulador);
 }
 
-/* ALERTA */
+ ALERTA 
 
 #alerta {
   position: absolute;
@@ -359,4 +359,4 @@ input {
   50%  {transform: rotate(25deg)}
   75%  {transform: rotate(-25deg)}
   100% {transform: rotate(25deg)}
-}
+} */
