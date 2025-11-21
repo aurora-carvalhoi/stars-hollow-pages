@@ -89,13 +89,11 @@ const listaDeQuestoes = [
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function iniciarQuiz() {
         document.getElementById('conteudoPrincipal').style.display = "none"
 
         document.getElementById('divQuizz').classList.add('ativo')
-        // document.getElementById('pontuacao').style.display = "block"
         document.getElementById('jogo').classList.add('jogo')
         document.getElementById('btnIniciarQuiz').style.display = "none"
 
@@ -105,8 +103,7 @@ const listaDeQuestoes = [
 
         btnSubmeter.disabled = false
         btnProx.disabled = true
-        // btnConcluir.disabled = true
-        // btnTentarNovamente.disabled = true
+  
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
@@ -115,7 +112,7 @@ const listaDeQuestoes = [
         numeroDaQuestaoAtual = index
         console.log("questaoAtual")
         console.log(questaoAtual)
-        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 
         document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
         document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
@@ -170,7 +167,6 @@ const listaDeQuestoes = [
         } else {
             finalizarJogo()
         }
-        // limparCoresBackgroundOpcoes()
     }
 
     function checarResposta() {
@@ -199,8 +195,6 @@ const listaDeQuestoes = [
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
 
-                // document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                // document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 tentativaIncorreta++
                 erradas++
                 document.getElementById("spanErradas").innerHTML = erradas
@@ -208,14 +202,6 @@ const listaDeQuestoes = [
             }
         })
     }
-
-    // function limparCoresBackgroundOpcoes() {
-    //     const options = document.getElementsByName("option");
-    //     options.forEach((option) => {
-    //         document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-    //         document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
-    //     })
-    // }
 
     function desmarcarRadioButtons() {
         const options = document.getElementsByName("option");
@@ -251,12 +237,15 @@ const listaDeQuestoes = [
             textoParaMensagemFinal = `<h2>Um B+ no seu boletim é suficiente pra você?</h2>
               <img src="./assets/imagens/resultado2.jpg" alt="">`
         }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
+        else {
             textoParaMensagemFinal = `<h2>É o orgulho de Stars hollow!</h2>
-              <img src="./assets/imagens/resultado3.png" alt="">`
+            <img src="./assets/imagens/resultado4.png" alt="">
+            `
         }
+        
+        var resultadoQuizz = Math.round((porcentagemFinalDeAcertos)*100)
 
-        textoParaMensagemFinal += "<br><span> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões.</span>"
+        textoParaMensagemFinal += "<br><span> Você acertou " + resultadoQuizz + "% das questões.</span>"
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
@@ -266,6 +255,35 @@ const listaDeQuestoes = [
         btnSubmeter.disabled = true
         // btnConcluir.disabled = true
         // btnTentarNovamente.disabled = false
+        enviarResultado(resultadoQuizz)
+
+    }
+
+    function enviarResultado(resultadoQuizz){
+        var idUsuarioSS = sessionStorage.getItem('ID_USUARIO')
+        console.log(sessionStorage.ID_USUARIO)
+        fetch("/resultadoQuizz/enviarResultado", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            idUsuario: Number(idUsuarioSS),
+            resultadoQuizzServer: resultadoQuizz
+          }),
+        }) .then(function(resultado){
+
+            if (resultado.ok) {
+                console.log("O resultado foi enviado para o banco!")
+            }else {
+                console.log("Houve um erro ao enviar o resultado para o banco!")
+            }
+
+        })
+            
+        
 
     }
 
