@@ -20,6 +20,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 // var medidasRouter = require("./src/routes/medidas");
 var emailsRouter = require("./src/routes/emails");
 var resultadoQuizzRouter = require("./src/routes/resultadoQuizz")
+var pontuacaoQuizzRouter = require("./src/routes/pontuacaoQuizz")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +33,7 @@ app.use("/usuarios", usuarioRouter);
 // app.use("/medidas", medidasRouter);
 app.use("/emails", emailsRouter);
 app.use("/resultadoQuizz", resultadoQuizzRouter);
+app.use("/pontuacaoQuizz", pontuacaoQuizzRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

@@ -13,6 +13,7 @@
 * {
   margin: 0;
   padding: 0;
+  /* box-sizing: border-box; */
 }
 
 html {
@@ -32,7 +33,7 @@ nav {
     flex-direction: row;
     max-width: 100%;
     flex-wrap: nowrap;
-    height: 40px;
+    height: 7vh;
     padding: 10px 50px;
     background-color: var(--cor-principal);
     font-size: 20px;
@@ -81,6 +82,8 @@ body{
 
 .div-principal{
     display: flex;
+    max-height: 89vh;
+    overflow: auto;
     flex-direction: row;
     justify-content: space-between;
     padding: 0px 50px;
@@ -92,16 +95,11 @@ body{
     align-items: center;
     justify-content: flex-start;
     width: 20%;
-    height: 100vh;
-    padding: 30px 30px 50px 0;
+    height: auto;
+    padding: 30px 30px 30px 0;
     gap: 24px;
     position: sticky;
     top: 0;
-}
-
-.dia-semana{
-    display: flex;
-    gap: 8px;
 }
 
 .coluna-lateral h2{
@@ -125,7 +123,7 @@ body{
 }
 
 .avatar{
-    width: 200px;
+    width: 250px;
     background-color: palegreen;
     border-radius: 9999px;
 }
@@ -157,6 +155,7 @@ main{
 
 .linha-dash2{
     display: flex;
+    flex-direction: row;
 }
 
 .rotacionar{
@@ -165,14 +164,12 @@ main{
 .titulo-dash{
     display: flex;
     flex-direction: row;
-    align-self: center;
-    margin-right: 350px;
     width: 150px;
     gap: 16px;
 }
 
 .grafico-barra{
-    width: 50%;
+    max-width: 90%;
 }
 
 .grafico-torta{
@@ -214,21 +211,6 @@ main{
     gap: 30px;
 }
 
-.card-individual-dash{
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    align-items: flex-start;
-    justify-content: center;
-    font-size: 20px;
-    color: var(--cor-texto2);
-    background-color: #18628D;
-    padding: 5px 5px;
-    width: 300px;
-    min-height: 100px;
-    gap: 30px;
-}
-
 .card-individual h3{
     font-weight: 600;
 }
@@ -255,7 +237,7 @@ footer {
     align-items: center;
     justify-content: space-between;
     max-width: 100%;
-    height: 40px;
+    height: 4vh;
     padding: 5px 50px;
     background-color: var(--cor-principal);
     color: var(--cor-texto2);
