@@ -114,7 +114,7 @@
 
         if (nomeUsuarioVar == "" || senhaVar == "") {
             // cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Erro! Insira credenciais válidas!";
             // finalizarAguardar();
             return false;
         }
@@ -150,7 +150,7 @@
                     // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "quizz_conhecimentos.html";
+                        window.location = "dashboard_stars.html";
                     }, 2000); // apenas para exibir o loading
 
                 });

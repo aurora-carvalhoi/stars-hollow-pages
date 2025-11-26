@@ -53,18 +53,22 @@
           <h3>"I smell Snow"</h3>
           <!-- aqui vai ser um vetor que puxa por math.random -->
           <img src="./assets/icones/divisor.svg" alt="" />
-          <h3>Recomendação de episódio:</h3>
-          <h3>Love, Daisies and Troubadours</h3>
-          <img src="./assets/icones/divisor.svg" alt="" />
           <div class="card-individual">
             <h3>
               Ivy <br />
               League
             </h3>
-            <img src="./assets/imagens/imgs_bd/yale.png" alt="" />
+            <img id="img_ivy" src="./assets/imagens/imgs_bd/yale.png" alt="" />
           </div>
           <img src="./assets/icones/divisor.svg" alt="" />
-          <div class="logout">
+          <div class="card-individual">
+            <h3>
+              Team
+            </h3>
+            <img class="team" id="img_team" src="./assets/imagens/imgs_bd/jess.png" alt="" />
+          </div>
+          <img src="./assets/icones/divisor.svg" alt="" />
+          <div onclick="limparSessao()" class="logout">
             <h3>Log-Out</h3>
             <img src="./assets/icones/logoutbutton.svg" alt="" />
           </div>
@@ -81,24 +85,28 @@
           />
         </div>
         <div class="cards-kpi">
-          <div class="card-individual-dash">
-            <span>Média de Pontuação do Site:</span>
-            <span id="pontuacao-site"></span>
+          <div class="card-dash">
+            <span>Maior Pontuação no Quiz</span>
+            <span class="dado-banco" id="pontuacao_usuario"></span>
           </div>
-            <div class="card-individual-dash">
-            <span>teste</span>
-            <span id=""></span>
+         <div class="card-dash">
+            <span>Média de Pontuação dos Usuários</span>
+            <span class="dado_banco" id="pontuacao_site"></span>
+          </div>
+            <div class="card-dash">
+            <span>Quantidade de Tentativas no Quiz</span>
+            <span class="dado-banco" id="tentativas_quiz"></span>
           </div>
         </div>
         <div class="linha-dash1">
           <canvas class="grafico-barra" id="grafico-pontuacao"></canvas>
         </div>
-        <div style="display: flex" class="linha-dash2">
-          <div style="width: 50%">
-            <canvas class="grafico-torta" id="grafico-ivy"></canvas>
+        <div class="linha-dash2">
+          <div class="grafico-torta">
+            <canvas id="grafico-ivy"></canvas>
           </div>
-          <div style="width: 50%">
-            <canvas class="grafico-torta" id="grafico-views"></canvas>
+          <div class="grafico-torta">
+            <canvas id="grafico-views"></canvas>
           </div>
         </div>
       </main>
@@ -155,7 +163,7 @@
 
   function plotarKpiPontuacao(resposta){
     console.log('plotando resposta: ', resposta)
-    document.getElementById('pontuacao-site').innerHTML = `${Number(resposta).toFixed(2)}%`
+    document.getElementById('pontuacao_usuario').innerHTML = `${Number(resposta).toFixed(2)}%`
   }
 
   const ctx = document.getElementById('grafico-pontuacao');
