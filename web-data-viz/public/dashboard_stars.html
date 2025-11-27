@@ -39,7 +39,7 @@
           <img
             class="avatar"
             id="img_avatar"
-            src="./assets/imagens/imgs_bd/rory.png"
+            src=""
             alt=""
           />
         </div>
@@ -220,6 +220,35 @@
               });
   }
 
+  function buscarAvatar(idUsuario){
+            fetch(`/sidebar/buscarAvatar/${idUsuario}`, 
+            {method: 'POST', body:{idUsuario:sessionStorage.ID_USUARIO} }, 
+            { cache: 'no-store' }).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (resposta) {
+                      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                      resposta.reverse();
+                    
+                      var res = resposta;
+                      
+                      if (resposta.length > 0) {
+                        res = resposta[0].caminhoPersonagem
+                        console.log('avatar ', resposta[0].maxima)
+                      }
+
+                      plotarAvatar(res);
+
+                  });
+                } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+                  console.log(response)
+                }
+          })
+              .catch(function (error) {
+                  console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              });
+  }
+
 
 
   function plotarKpiPontuacao(resposta){
@@ -236,6 +265,12 @@
   console.log('plotando resposta do KPI Qtd: ', res)
   document.getElementById('tentativas_quiz').innerHTML = `${Number(res)}`
   }
+
+  function plotarAvatar(res){
+  console.log('plotando avatar: ', res)
+  document.getElementById('img_avatar').src = `${res}`
+  }
+
 
   const ctx = document.getElementById('grafico-pontuacao');
 
@@ -358,4 +393,5 @@
     buscarQtdTentativas(idUsuario)
 
 buscarMaiorPontuacao(idUsuario);
+buscarAvatar(idUsuario);
 </script>

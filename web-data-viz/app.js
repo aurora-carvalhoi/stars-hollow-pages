@@ -21,6 +21,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var emailsRouter = require("./src/routes/emails");
 var resultadoQuizzRouter = require("./src/routes/resultadoQuizz")
 var pontuacaoQuizzRouter = require("./src/routes/pontuacaoQuizz")
+var sidebarRouter = require("./src/routes/sidebar")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +35,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/emails", emailsRouter);
 app.use("/resultadoQuizz", resultadoQuizzRouter);
 app.use("/pontuacaoQuizz", pontuacaoQuizzRouter);
+app.use("/sidebar", sidebarRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
