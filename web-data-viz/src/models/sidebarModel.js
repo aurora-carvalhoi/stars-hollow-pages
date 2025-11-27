@@ -24,8 +24,17 @@ var database = require("../database/config");
      return database.executar(instrucaoSql);
  }
 
+    function buscarUsername(idUsuario) {
+
+     var instrucaoSql = `select nomeUsuario from usuario WHERE idUsuario = ${idUsuario};`;
+
+     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+     return database.executar(instrucaoSql);
+ }
+
   module.exports = {
     buscarAvatar,
     buscarIvy,
-    buscarTeam
+    buscarTeam,
+    buscarUsername
  }

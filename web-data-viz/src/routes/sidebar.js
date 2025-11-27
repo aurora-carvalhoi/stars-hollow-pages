@@ -14,5 +14,9 @@ var express = require("express");
    router.post("/buscarTeam/:idUsuario", function (req, res) {
     sidebarController.buscarTeam(req, res);
  });
+
+    router.post("/buscarUsername/:idUsuario", function (req, res) {
+    sidebarController.buscarUsername(req, res);
+ });
  
  module.exports = router;

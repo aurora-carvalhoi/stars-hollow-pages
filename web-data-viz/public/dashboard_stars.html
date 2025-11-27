@@ -34,7 +34,7 @@
   <body>
     <div class="div-principal">
       <div class="coluna-lateral">
-        <h2>Bem-vindo, <span id="nome_usuario"></span></h2>
+        <h2 class="msg-bemvindo">Bem-vindo, <span id="nome_usuario"></span></h2>
         <div>
           <img
             class="avatar"
@@ -307,6 +307,35 @@
               });
   }
 
+  function buscarUsername(idUsuario){
+            fetch(`/sidebar/buscarUsername/${idUsuario}`, 
+            {method: 'POST', body:{idUsuario:sessionStorage.ID_USUARIO} }, 
+            { cache: 'no-store' }).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (resposta) {
+                      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                      resposta.reverse();
+                    
+                      var res = resposta;
+                      
+                      if (resposta.length > 0) {
+                        res = resposta[0].nomeUsuario
+                        console.log('username ', resposta[0].nomeUsuario)
+                      }
+
+                      plotarUsername(res);
+
+                  });
+                } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+                  console.log(response)
+                }
+          })
+              .catch(function (error) {
+                  console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              });
+  }
+
 
 
   function plotarKpiPontuacao(resposta){
@@ -337,6 +366,11 @@
    function plotarTeam(res){
   console.log('plotando Ivy: ', res)
   document.getElementById('img_team').src = `${res}`
+  }
+
+     function plotarUsername(res){
+  console.log('plotando username: ', res)
+  document.getElementById('nome_usuario').innerHTML = `${res}`
   }
 
 
@@ -464,4 +498,5 @@ buscarMaiorPontuacao(idUsuario);
 buscarAvatar(idUsuario);
 buscarIvy(idUsuario);
 buscarTeam(idUsuario);
+buscarUsername(idUsuario);
 </script>
