@@ -58,14 +58,14 @@
               Ivy <br />
               League
             </h3>
-            <img id="img_ivy" src="./assets/imagens/imgs_bd/yale.png" alt="" />
+            <img id="img_ivy" src="" alt="" />
           </div>
           <img src="./assets/icones/divisor.svg" alt="" />
           <div class="card-individual">
             <h3>
               Team
             </h3>
-            <img class="team" id="img_team" src="./assets/imagens/imgs_bd/jess.png" alt="" />
+            <img class="team" id="img_team" src="" alt="" />
           </div>
           <img src="./assets/icones/divisor.svg" alt="" />
           <div onclick="limparSessao()" class="logout">
@@ -233,10 +233,68 @@
                       
                       if (resposta.length > 0) {
                         res = resposta[0].caminhoPersonagem
-                        console.log('avatar ', resposta[0].maxima)
+                        console.log('avatar ', resposta[0].caminhoPersonagem)
                       }
 
                       plotarAvatar(res);
+
+                  });
+                } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+                  console.log(response)
+                }
+          })
+              .catch(function (error) {
+                  console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              });
+  }
+
+  function buscarIvy(idUsuario){
+            fetch(`/sidebar/buscarIvy/${idUsuario}`, 
+            {method: 'POST', body:{idUsuario:sessionStorage.ID_USUARIO} }, 
+            { cache: 'no-store' }).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (resposta) {
+                      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                      resposta.reverse();
+                    
+                      var res = resposta;
+                      
+                      if (resposta.length > 0) {
+                        res = resposta[0].caminhoIvy
+                        console.log('Ivy ', resposta[0].caminhoIvy)
+                      }
+
+                      plotarIvy(res);
+
+                  });
+                } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+                  console.log(response)
+                }
+          })
+              .catch(function (error) {
+                  console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              });
+  }
+
+  function buscarTeam(idUsuario){
+            fetch(`/sidebar/buscarTeam/${idUsuario}`, 
+            {method: 'POST', body:{idUsuario:sessionStorage.ID_USUARIO} }, 
+            { cache: 'no-store' }).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (resposta) {
+                      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                      resposta.reverse();
+                    
+                      var res = resposta;
+                      
+                      if (resposta.length > 0) {
+                        res = resposta[0].caminhoPersonagem
+                        console.log('team ', resposta[0].caminhoPersonagem)
+                      }
+
+                      plotarTeam(res);
 
                   });
                 } else {
@@ -269,6 +327,16 @@
   function plotarAvatar(res){
   console.log('plotando avatar: ', res)
   document.getElementById('img_avatar').src = `${res}`
+  }
+
+  function plotarIvy(res){
+  console.log('plotando Ivy: ', res)
+  document.getElementById('img_ivy').src = `${res}`
+  }
+
+   function plotarTeam(res){
+  console.log('plotando Ivy: ', res)
+  document.getElementById('img_team').src = `${res}`
   }
 
 
@@ -394,4 +462,6 @@
 
 buscarMaiorPontuacao(idUsuario);
 buscarAvatar(idUsuario);
+buscarIvy(idUsuario);
+buscarTeam(idUsuario);
 </script>
