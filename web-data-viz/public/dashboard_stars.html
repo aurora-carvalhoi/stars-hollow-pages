@@ -13,7 +13,7 @@
     <img class="bg-header" src="./assets/imagens/header.svg" alt="" />
     <nav>
       <div class="links-nav">
-        <a href="">Página Inicial</a>
+        <a href="index.html">Página Inicial</a>
         <img src="./assets/icones/linha_1.svg" alt="" />
         <a href="sobre_a_serie.html">Sobre a Série</a>
         <img src="./assets/icones/linha_1.svg" alt="" />
@@ -31,7 +31,7 @@
       </div>
     </nav>
   </header>
-  <body onload="iniciar()">
+  <body>
     <div class="div-principal">
       <div class="coluna-lateral">
         <h2>Bem-vindo, <span id="nome_usuario"></span></h2>
@@ -91,7 +91,8 @@
           </div>
          <div class="card-dash">
             <span>Média de Pontuação dos Usuários</span>
-            <span class="dado_banco" id="pontuacao_site"></span>
+            <!-- <button onclick="test()">Teste</button> -->
+            <span class="dado-banco" id="pontuacao_site"></span>
           </div>
             <div class="card-dash">
             <span>Quantidade de Tentativas no Quiz</span>
@@ -128,21 +129,20 @@
   var d = new Date()
   var diaAtual = diasSemana[d.getDay()]
   document.getElementById("dia_semana").innerHTML = diaAtual
-
-  function iniciar(){
-    const idUsuario = sessionStorage.ID_USUARIO
-    buscarMaiorPontuacao(idUsuario)
-  }
+  
+  const idUsuario = sessionStorage.ID_USUARIO
 
   function buscarMaiorPontuacao(idUsuario){
-            fetch(`/pontuacaoQuizz/${idUsuario}`, {method: 'POST', body:{idUsuario:sessionStorage.ID_USUARIO} }, { cache: 'no-store' }).then(function (response) {
+            fetch(`/pontuacaoQuizz/Maior/${idUsuario}`, 
+            {method: 'POST', body:{idUsuario:sessionStorage.ID_USUARIO} }, 
+            { cache: 'no-store' }).then(function (response) {
               if (response.ok) {
-                  response.json().then(function (resposta) {
+                response.json().then(function (resposta) {
                       console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                       resposta.reverse();
                     
                       var res = resposta;
-                   
+                      
                       if (resposta.length > 0) {
                         res = resposta[0].maxima
                         console.log('kpi: ', resposta[0].maxima)
@@ -151,19 +151,90 @@
                       plotarKpiPontuacao(res);
 
                   });
-              } else {
+                } else {
                   console.error('Nenhum dado encontrado ou erro na API');
                   console.log(response)
-              }
+                }
           })
               .catch(function (error) {
                   console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
               });
   }
 
+  function buscarMediaPontuacao(idUsuario){
+            fetch(`/pontuacaoQuizz/buscarPontuacaoMedia/${idUsuario}`, 
+            {method: 'POST', body:{idUsuario:sessionStorage.ID_USUARIO}}, 
+            { cache: 'no-store' }).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (resposta) {
+                      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                      resposta.reverse();
+                    
+                      var res = resposta;
+                      
+                      if (resposta.length > 0) {
+                        res = resposta[0].media
+                        console.log('kpi: ', resposta[0].media)
+                      }
+
+                      plotarKpiMedia(res);
+
+                  });
+                } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+                  console.log(response)
+                }
+          })
+              .catch(function (error) {
+                  console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              });
+  }
+
+
+    function buscarQtdTentativas(idUsuario){
+            fetch(`/pontuacaoQuizz/buscarQtdTentativas/${idUsuario}`, 
+            {method: 'POST', body:{idUsuario:sessionStorage.ID_USUARIO}}, 
+            { cache: 'no-store' }).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (resposta) {
+                      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                      resposta.reverse();
+                    
+                      var res = resposta;
+                      
+                      if (resposta.length > 0) {
+                        res = resposta[0].tentativas
+                        console.log('kpi: ', resposta[0].tentativas)
+                      }
+
+                      plotarKpiQtd(res);
+
+                  });
+                } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+                  console.log(response)
+                }
+          })
+              .catch(function (error) {
+                  console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              });
+  }
+
+
+
   function plotarKpiPontuacao(resposta){
     console.log('plotando resposta: ', resposta)
     document.getElementById('pontuacao_usuario').innerHTML = `${Number(resposta).toFixed(2)}%`
+  }
+
+  function plotarKpiMedia(res){
+  console.log('plotando resposta do KPI MEDIA: ', res)
+  document.getElementById('pontuacao_site').innerHTML = `${res}%`
+  }
+
+  function plotarKpiQtd(res){
+  console.log('plotando resposta do KPI Qtd: ', res)
+  document.getElementById('tentativas_quiz').innerHTML = `${Number(res)}`
   }
 
   const ctx = document.getElementById('grafico-pontuacao');
@@ -232,8 +303,8 @@
             },
               title: {
            display: true,
-          text: "Usuários em cada Ivy League",
-          position: "top",
+           text: "Usuários em cada Ivy League",
+           position: "top",
           align: "center",
           font: {
             family: "Playfair Display",
@@ -243,11 +314,11 @@
           }
       }
   });
-
+  
   const ctx2= document.getElementById("grafico-views");
-
+  
   new Chart(ctx2, {
-      type: 'pie',
+    type: 'pie',
     data: {
       labels: [
       'Yale',
@@ -270,9 +341,9 @@
               position: "right"
             },
               title: {
-           display: true,
-          text: "Quantidade de Usuários x Quantidade de Views da série",
-          position: "top",
+                display: true,
+                text: "Quantidade de Usuários x Quantidade de Views da série",
+                position: "top",
           align: "center",
           font: {
             family: "Playfair Display",
@@ -281,5 +352,10 @@
               }
           }
       }
-  });
+    });
+    buscarMediaPontuacao(idUsuario);
+
+    buscarQtdTentativas(idUsuario)
+
+buscarMaiorPontuacao(idUsuario);
 </script>

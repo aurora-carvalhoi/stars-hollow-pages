@@ -9,6 +9,25 @@ where fkUsuario = ${idUsuario};`;
      return database.executar(instrucaoSql);
  }
 
+
+
+ function buscarPontuacaoMedia() {
+   var instrucaoSql = `select ROUND(AVG(pontuacaoConhecimento),2) AS media FROM resultadoQuizz;`;
+   console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+  
+     return database.executar(instrucaoSql);
+ }
+
+
+  function buscarQtdTentativas(idUsuario) {
+   var instrucaoSql = `select count(idResposta) as tentativas from resultadoQuizz where fkUsuario = ${idUsuario}`;
+   console.log("Executando a instrução SQL: \n" + instrucaoSql);
+     return database.executar(instrucaoSql);
+ }
+
   module.exports = {
-    buscarMaiorPontuacao
+    buscarMaiorPontuacao,
+    buscarPontuacaoMedia,
+    buscarQtdTentativas
  }

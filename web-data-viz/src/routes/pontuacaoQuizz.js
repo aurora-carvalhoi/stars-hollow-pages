@@ -3,9 +3,17 @@
 
  var pontuacaoQuizzController = require("../controllers/pontuacaoQuizzController.js");
 
-// /pontuacaoQuizz/1 
- router.post("/:idUsuario", function (req, res) {
+ router.post("/Maior/:idUsuario", function (req, res) {
     pontuacaoQuizzController.buscarMaiorPontuacao(req, res);
  });
+
+
+router.post("/buscarPontuacaoMedia/:idUsuario", function (req, res) {
+     pontuacaoQuizzController.buscarPontuacaoMedia(req, res);
+});
+
+router.post("/buscarQtdTentativas/:idUsuario", function (req, res) {
+     pontuacaoQuizzController.buscarQtdTentativas(req, res);
+});
 
  module.exports = router;
