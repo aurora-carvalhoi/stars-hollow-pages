@@ -158,6 +158,8 @@
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
+                mensagem_erro.innerHTML = `<div style="text-align: center;">Houve um erro ao realizar o login! E-mail ou senha incorretos!</div>`
+
 
                 resposta.text().then(texto => {
                     console.error(texto);
