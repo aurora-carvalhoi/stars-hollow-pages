@@ -16,4 +16,8 @@ router.post("/buscarQtdTentativas/:idUsuario", function (req, res) {
      pontuacaoQuizzController.buscarQtdTentativas(req, res);
 });
 
+router.post("/buscarPorcentagens/:idUsuario", function (req, res) {
+     pontuacaoQuizzController.buscarPorcentagens(req, res);
+});
+
  module.exports = router;

@@ -91,6 +91,13 @@ const listaDeQuestoes = [
     let quantidadeDeQuestoes = listaDeQuestoes.length
 
     function iniciarQuiz() {
+         const idUsuario = sessionStorage.ID_USUARIO
+
+         if (idUsuario < 1 || idUsuario == '' || idUsuario == undefined){
+            alert("Você precisa estar logado para responder o quiz! Redirecionando para a página de login...")
+            window.location = "login.html";
+         }
+         
         document.getElementById('conteudoPrincipal').style.display = "none"
 
         document.getElementById('divQuizz').classList.add('ativo')

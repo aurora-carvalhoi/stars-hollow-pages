@@ -374,7 +374,98 @@
   }
 
 
-  const ctx = document.getElementById('grafico-pontuacao');
+      function buscarPorcentagens(idUsuario){
+            fetch(`/pontuacaoQuizz/buscarPorcentagens/${idUsuario}`, 
+            {method: 'POST', body:{idUsuario:sessionStorage.ID_USUARIO} }, 
+            { cache: 'no-store' }).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (resposta) {
+                      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                      resposta.reverse();
+                      
+                      if (resposta.length > 0) {
+                        plotarGrafico(resposta)
+                      }
+
+                      
+
+                  });
+                } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+                  console.log(response)
+                }
+          })
+              .catch(function (error) {
+                  console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              });
+  }
+
+
+      function plotarGrafico(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+         let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+        datasets: [{
+          label: '% Pontuação / Data',
+          data: [],
+          backgroundColor: 'rgba(24, 98, 141, 0.8)',
+          borderColor: '#18628D',
+          borderWidth: 1,
+          barThickness: 70,
+        }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+      //  console.log(resposta)
+        // console.log(res)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+          for (i = 0; i < resposta.length; i++) {
+              var registro = resposta[i];
+              const dataJS = new Date(registro.dtQuizz)
+                const dataFormatada = dataJS.toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric' 
+  });
+              labels.push(dataFormatada);
+              // dados.datasets[0].data.push(registro.dtQuizz);
+              dados.datasets[0].data.push(Number(registro.pontuacaoConhecimento));
+              // console.log(dados.datasets[1].data)
+          }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'bar',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`grafico-pontuacao`),
+            config
+        );
+
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
+
+
+  /*const ctx = document.getElementById('grafico-pontuacao');
 
     new Chart(ctx, {
       type: 'bar',
@@ -411,7 +502,7 @@
       }
   }
 
-    });
+    }); */
 
     const ctx3 = document.getElementById("grafico-ivy");
 
@@ -499,4 +590,5 @@ buscarAvatar(idUsuario);
 buscarIvy(idUsuario);
 buscarTeam(idUsuario);
 buscarUsername(idUsuario);
+buscarPorcentagens(idUsuario)
 </script>
