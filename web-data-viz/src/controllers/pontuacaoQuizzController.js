@@ -53,7 +53,7 @@
  }
 
  function buscarPorcentagens(req, res){
-    
+
          var idUsuario = req.params.idUsuario;
 
          pontuacaoQuizzModel.buscarPorcentagens(idUsuario).then(function (resultado) {
@@ -69,9 +69,41 @@
      });
  }
 
+  function buscarQtdUsuariosIvy(req, res){
+
+         pontuacaoQuizzModel.buscarQtdUsuariosIvy().then(function (resultado) {
+         if (resultado.length > 0) {
+             res.status(200).json(resultado);
+         } else {
+             res.status(204).send("Nenhum resultado encontrado!")
+         }
+     }).catch(function (erro) {
+         console.log(erro);
+         console.log("Houve um erro ao buscar as a qtd de usuários", erro.sqlMessage);
+         res.status(500).json(erro.sqlMessage);
+     });
+ }
+
+   function buscarQtdViews(req, res){
+
+         pontuacaoQuizzModel.buscarQtdViews().then(function (resultado) {
+         if (resultado.length > 0) {
+             res.status(200).json(resultado);
+         } else {
+             res.status(204).send("Nenhum resultado encontrado!")
+         }
+     }).catch(function (erro) {
+         console.log(erro);
+         console.log("Houve um erro ao buscar as a qtd de usuários", erro.sqlMessage);
+         res.status(500).json(erro.sqlMessage);
+     });
+ }
+
   module.exports = {
     buscarMaiorPontuacao,
      buscarPontuacaoMedia,
      buscarQtdTentativas,
-     buscarPorcentagens
+     buscarPorcentagens,
+     buscarQtdUsuariosIvy,
+     buscarQtdViews
   }

@@ -20,4 +20,11 @@ router.post("/buscarPorcentagens/:idUsuario", function (req, res) {
      pontuacaoQuizzController.buscarPorcentagens(req, res);
 });
 
+router.post("/buscarQtdUsuariosIvy", function (req, res) {
+     pontuacaoQuizzController.buscarQtdUsuariosIvy(req, res);
+});
+
+router.post("/buscarQtdViews", function (req, res) {
+     pontuacaoQuizzController.buscarQtdViews(req, res);
+});
  module.exports = router;

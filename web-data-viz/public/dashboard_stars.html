@@ -384,7 +384,7 @@
                       resposta.reverse();
                       
                       if (resposta.length > 0) {
-                        plotarGrafico(resposta)
+                        plotarGraficoBarra(resposta)
                       }
 
                       
@@ -401,7 +401,7 @@
   }
 
 
-      function plotarGrafico(resposta) {
+      function plotarGraficoBarra(resposta) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -465,122 +465,214 @@
     }
 
 
-  /*const ctx = document.getElementById('grafico-pontuacao');
 
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: 'rgba(24, 98, 141, 0.8)',
-          borderColor: '#18628D',
-          borderWidth: 1,
-          barThickness: 70,
-        }]
-      },
-      options: {
-      scales: {
-          x: {
-              ticks: {
-                  font: {
-                      size: 12,
-                      family: 'Playfair Display'
-                  }
-              }
-          },
-          y: {
-            beginAtZero: true,
-              ticks: {
-                  font: {
-                      size: 12,
-                      family: 'Playfair Display'
-                  }
-              }
-          }
-      }
+      function buscarQtdUsuariosIvy(){
+            fetch(`/pontuacaoQuizz/buscarQtdUsuariosIvy`, 
+            {method: 'POST', body:{} }, 
+            { cache: 'no-store' }).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (resposta) {
+                      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                      resposta.reverse();
+                      
+                      if (resposta.length > 0) {
+                        plotarGraficoPizza1(resposta)
+                      }
+
+                      
+
+                  });
+                } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+                  console.log(response)
+                }
+          })
+              .catch(function (error) {
+                  console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              });
   }
 
-    }); */
 
-    const ctx3 = document.getElementById("grafico-ivy");
+      function plotarGraficoPizza1(resposta) {
 
-  new Chart(ctx3, {
-      type: 'pie',
-    data: {
-      labels: [
-      'Yale',
-      'Princeton',
-      'Harvard'
-    ],
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+         let labelsPizza1 = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {labels: labelsPizza1,
     datasets: [{
       label: 'Quantidade de alunos',
-      data: [8, 7, 4],
+      data: [],
       backgroundColor: [
         '#21538e',
         '#5181aa',
         '#143357'    ],
       hoverOffset: 4,
     }]
-  },
-   options: {
-          plugins: {
-            legend:{
-              position: "right"
-            },
-              title: {
-           display: true,
-           text: "Usuários em cada Ivy League",
-           position: "top",
-          align: "center",
-          font: {
-            family: "Playfair Display",
-            size: 20,
-          },
-              }
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+      //  console.log(resposta)
+        // console.log(res)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+          for (i = 0; i < resposta.length; i++) {
+              var registro = resposta[i];
+              labelsPizza1.push(registro.nomeIvy);
+              // dados.datasets[0].data.push(registro.dtQuizz);
+              dados.datasets[0].data.push(Number(registro.qtd_usuarios));
+              // console.log(dados.datasets[1].data)
           }
-      }
-  });
-  
-  const ctx2= document.getElementById("grafico-views");
-  
-  new Chart(ctx2, {
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labelsPizza1)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config= {
     type: 'pie',
-    data: {
-      labels: [
-      'Yale',
-      'Princeton',
-      'Harvard'
-    ],
+    data: dados,
+    options: {
+      plugins: {
+        legend: {
+          position: 'right'
+        },
+        title: {
+          display: true,
+          text: 'Usuários em cada Ivy League',
+          position: 'top',
+          align: 'center',
+          font: {
+            family: 'Playfair Display',
+            size: 20,
+          },
+        }
+      }
+    }
+  };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`grafico-ivy`),
+            config
+        );
+
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
+
+
+          function buscarQtdViews(){
+            fetch(`/pontuacaoQuizz/buscarQtdViews`, 
+            {method: 'POST', body:{} }, 
+            { cache: 'no-store' }).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (resposta) {
+                      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                      resposta.reverse();
+                      
+                      if (resposta.length > 0) {
+                        plotarGraficoPizza2(resposta)
+                      }
+
+                      
+
+                  });
+                } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+                  console.log(response)
+                }
+          })
+              .catch(function (error) {
+                  console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              });
+  }
+
+
+
+      function plotarGraficoPizza2(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+         let labelsPizza2 = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {labels: labelsPizza2,
     datasets: [{
-      label: 'Quantidade de views',
-      data: [8, 7, 4],
+      label: 'Quantidade de alunos',
+      data: [],
       backgroundColor: [
         '#21538e',
         '#5181aa',
         '#143357'    ],
       hoverOffset: 4,
     }]
-  },
-   options: {
-          plugins: {
-            legend:{
-              position: "right"
-            },
-              title: {
-                display: true,
-                text: "Quantidade de Usuários x Quantidade de Views da série",
-                position: "top",
-          align: "center",
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+      //  console.log(resposta)
+        // console.log(res)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+          for (i = 0; i < resposta.length; i++) {
+              var registro = resposta[i];
+              labelsPizza2.push(`${registro.qtdViews} views`);
+              // dados.datasets[0].data.push(registro.dtQuizz);
+              dados.datasets[0].data.push(Number(registro.qtd_usuarios));
+              // console.log(dados.datasets[1].data)
+          }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labelsPizza2)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config= {
+    type: 'pie',
+    data: dados,
+    options: {
+      plugins: {
+        legend: {
+          position: 'right'
+        },
+        title: {
+          display: true,
+          text: 'Quantidade de vezes que a série foi vista',
+          position: 'top',
+          align: 'center',
           font: {
-            family: "Playfair Display",
+            family: 'Playfair Display',
             size: 20,
           },
-              }
-          }
+        }
       }
-    });
+    }
+  };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`grafico-views`),
+            config
+        );
+
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
+
+     
+  
+
     buscarMediaPontuacao(idUsuario);
 
     buscarQtdTentativas(idUsuario)
@@ -590,5 +682,7 @@ buscarAvatar(idUsuario);
 buscarIvy(idUsuario);
 buscarTeam(idUsuario);
 buscarUsername(idUsuario);
-buscarPorcentagens(idUsuario)
+buscarPorcentagens(idUsuario);
+buscarQtdUsuariosIvy();
+buscarQtdViews();
 </script>

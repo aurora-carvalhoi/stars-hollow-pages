@@ -32,9 +32,23 @@ where fkUsuario = ${idUsuario};`;
      return database.executar(instrucaoSql);
  }
 
+    function buscarQtdUsuariosIvy() {
+   var instrucaoSql = `select il.nome as nomeIvy, COUNT(*) as qtd_usuarios FROM usuario JOIN ivyLeague as il on usuario.fkIvyLeague = il.idIvy GROUP BY il.nome;`;
+   console.log("Executando a instrução SQL: \n" + instrucaoSql);
+     return database.executar(instrucaoSql);
+ }
+
+    function buscarQtdViews() {
+   var instrucaoSql = `select qtdViews, COUNT(*) as qtd_usuarios from usuario group by qtdViews;`;
+   console.log("Executando a instrução SQL: \n" + instrucaoSql);
+     return database.executar(instrucaoSql);
+ }
+
   module.exports = {
     buscarMaiorPontuacao,
     buscarPontuacaoMedia,
     buscarQtdTentativas,
-    buscarPorcentagens
+    buscarPorcentagens,
+    buscarQtdUsuariosIvy,
+    buscarQtdViews
  }
