@@ -20,6 +20,8 @@
         <a href="dicas_estudo.html">Dicas de Estudo</a>
         <img src="./assets/icones/linha_1.svg" alt="" />
         <a href="quizz_conhecimentos.html">Quizz</a>
+        <img src="./assets/icones/linha_1.svg" alt="">
+        <a href="dashboard_stars.html">Dashboard</a>
       </div>
       <div class="botoes-nav">
         <a href="cadastro.html">
@@ -131,6 +133,11 @@
   document.getElementById("dia_semana").innerHTML = diaAtual
   
   const idUsuario = sessionStorage.ID_USUARIO
+
+         if (idUsuario < 1 || idUsuario == '' || idUsuario == undefined){
+            alert("Você precisa estar logado para acessar a dashboard! Redirecionando para a página de login...")
+            window.location = "login.html";
+         }
 
   function buscarMaiorPontuacao(idUsuario){
             fetch(`/pontuacaoQuizz/Maior/${idUsuario}`, 
